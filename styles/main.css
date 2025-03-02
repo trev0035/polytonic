@@ -1,0 +1,961 @@
+/* Base Styles and Variables */
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #e0e0e0;
+    --accent-color: #9c9c9c;
+    --dark-color: #1a1a1a;
+    --light-color: #f5f5f5;
+    --beige-color: #d6cdb7;
+    --gold-color: #b9a77e;
+    --transition-speed: 0.3s;
+    --transition-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --font-primary: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --font-secondary: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+    padding-bottom: 40px;
+    letter-spacing: 0.02em;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.highlight {
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+/* Cursor Follower - Removed for minimalist design */
+.cursor-follower {
+    display: none;
+}
+
+/* Header Styles */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    height: 100vh;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    background-color: var(--light-color);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+header.scrolled {
+    height: 80px;
+    background-color: var(--light-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    /* Solid background instead of gradient */
+    background: var(--light-color);
+}
+
+/* Remove scan lines for minimalist design */
+.scan-lines {
+    display: none;
+}
+
+/* Remove red glow effect for minimalist design */
+.video-background::after {
+    display: none;
+}
+
+/* Remove vignette effect for minimalist design */
+.video-background::before {
+    display: none;
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1);
+    opacity: 0.2;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    height: 100vh;
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+}
+
+header.scrolled .header-content {
+    height: 80px;
+    padding: 0 5%;
+    padding-top: 10px;
+}
+
+.logo {
+    transition: all 0.5s ease;
+    position: absolute;
+    top: 2rem;
+    right: 5%;
+    transform: none;
+}
+
+header.scrolled .logo {
+    position: static;
+    transform: none;
+}
+
+.logo h1 {
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    color: var(--dark-color);
+    transition: all 0.5s ease;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.logo .tagline {
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: var(--dark-color);
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+}
+
+header.scrolled .logo h1 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+header.scrolled .logo h1::after {
+    bottom: -5px;
+    width: 100%;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+header.scrolled .scroll-indicator {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.scroll-indicator p {
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    color: var(--light-color);
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.scroll-arrow {
+    animation: bounce 2s infinite;
+}
+
+.scroll-arrow i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+nav {
+    transition: all 0.5s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+header.scrolled nav {
+    opacity: 1;
+    visibility: visible;
+}
+
+nav ul {
+    display: flex;
+    gap: 2rem;
+}
+
+nav ul li a {
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    color: var(--light-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-secondary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+header.scrolled nav ul li a {
+    text-shadow: none;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed) ease;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Add futuristic nav item indicator */
+nav ul li {
+    position: relative;
+}
+
+nav ul li::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 5px;
+    height: 5px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    transform: translateY(-50%) scale(0);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+}
+
+nav ul li:hover::before {
+    transform: translateY(-50%) scale(1);
+}
+
+/* Scrolling Text Bar */
+.scrolling-text-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    overflow: hidden;
+    z-index: 99;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    will-change: transform;
+    border-top: none;
+    box-shadow: none;
+}
+
+.scrolling-text {
+    white-space: nowrap;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    animation: scrollText 20s linear infinite;
+    padding-left: 100%;
+    will-change: transform;
+    font-family: var(--font-secondary);
+    display: inline-block;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Make sure there's always text visible */
+.scrolling-text::after {
+    content: "HAUS® A COLLECTIVE OF COMMERCIAL FASHION LIFESTYLE AND EVENT PHOTOGRAPHERS. WE ARE A COLLECTIVE OF COMMERCIAL FASHION LIFESTYLE AND EVENT PHOTOGRAPHERS.";
+    padding-left: 2rem;
+}
+
+/* Hero Section */
+.hero-section {
+    margin-top: 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--dark-color) 0%, #1a1a1a 100%);
+}
+
+/* Add futuristic grid lines to the background */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(90deg, rgba(255, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-content {
+    width: 50%;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 80%;
+}
+
+.cta-button {
+    padding: 0.8rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add futuristic button effect */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.hero-visual {
+    width: 45%;
+    height: 70%;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.waveform-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#waveform {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* About Section */
+.about-section {
+    padding: 8rem 5%;
+    position: relative;
+    overflow: hidden;
+    background-color: #0a0a0a;
+}
+
+.section-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.section-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.section-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.visual-element {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary-color), #880000);
+    filter: blur(80px);
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.parallax-element {
+    top: -100px;
+    right: -100px;
+}
+
+/* Experience Section */
+.experience-section {
+    padding: 8rem 5% 12rem;
+    background-color: #0f0f0f;
+    position: relative;
+}
+
+.audio-player {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    background-color: #cc0000;
+}
+
+.control-btn i {
+    font-size: 1.2rem;
+}
+
+.track-info {
+    flex: 1;
+}
+
+#track-name {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.progress-container {
+    width: 100%;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#progress-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0;
+    transition: width 0.1s linear;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.volume-control i {
+    font-size: 1.2rem;
+}
+
+#volume {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    outline: none;
+}
+
+#volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.track-selection {
+    width: 100%;
+}
+
+#track-selector {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    color: var(--light-color);
+    font-family: var(--font-primary);
+    outline: none;
+    cursor: pointer;
+}
+
+#track-selector option {
+    background-color: #2a2a4a;
+}
+
+.visualization-container {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Visualization Mode Controls */
+.visualization-modes {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 8px;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    max-width: 300px;
+    justify-content: flex-end;
+}
+
+.mode-btn {
+    padding: 6px 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 20px;
+    color: var(--light-color);
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+
+.mode-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.mode-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#visualization-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.particle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Clients Section */
+.clients-section {
+    padding: 8rem 5%;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+
+.clients-section .section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.clients-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.client-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.client-tag, .client-item {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.client-tag {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+
+.client-item {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.client-showcase {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.showcase-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 8rem 5%;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--beige-color);
+    color: var(--dark-color);
+    display: block;
+}
+
+.contact-section .section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.contact-section h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-form {
+    width: 45%;
+    padding: 2rem;
+    background-color: var(--light-color);
+    text-align: center;
+}
+
+.contact-form h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.contact-button {
+    padding: 0.8rem 2rem;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.contact-button:hover {
+    background-color: var(--accent-color);
+}
+
+.contact-image {
+    width: 45%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.contact-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Footer */
+footer {
+    padding: 3rem 5%;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.project-info {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.project-info p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.social-links a i {
+    font-size: 1.2rem;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .hero-section {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-content, .hero-visual {
+        width: 100%;
+    }
+
+    .hero-content {
+        margin-bottom: 3rem;
+    }
+
+    .hero-content p {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+
+    header {
+        padding: 1rem 5%;
+    }
+
+    nav ul {
+        gap: 1rem;
+    }
+
+    .audio-player {
+        padding: 1rem;
+    }
+
+    .player-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .volume-control {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-content h2 {
+        font-size: 2rem;
+    }
+
+    .visualization-container {
+        height: 300px;
+    }
+    
+    .visualization-modes {
+        top: 10px;
+        right: 10px;
+        padding: 5px;
+        gap: 5px;
+        max-width: 200px;
+    }
+    
+    .mode-btn {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+} 

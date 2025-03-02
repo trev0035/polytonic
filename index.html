@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAUS® Media Kit</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+    <div class="cursor-follower"></div>
+    
+    <header>
+        <div class="video-background">
+            <video autoplay muted loop id="header-video">
+                <source src="videos/header.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="header-content">
+            <div class="logo">
+                <h1>HAUS®</h1>
+                <p class="tagline">MEDIA KIT</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="scroll-indicator">
+                <p>SCROLL DOWN</p>
+                <div class="scroll-arrow">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="scrolling-text-container">
+        <div class="scrolling-text">
+            HAUS® A COLLECTIVE OF COMMERCIAL FASHION LIFESTYLE AND EVENT PHOTOGRAPHERS. WE ARE A COLLECTIVE OF COMMERCIAL FASHION LIFESTYLE AND EVENT PHOTOGRAPHERS.
+        </div>
+    </div>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h1>Professional <span class="highlight">Photography</span></h1>
+                <p>Commercial, fashion, lifestyle and event photography services</p>
+                <button id="start-experience" class="cta-button">VIEW PORTFOLIO</button>
+            </div>
+            <div class="hero-visual">
+                <img src="images/hero-image.jpg" alt="Professional photography" class="hero-image">
+            </div>
+        </section>
+
+        <section id="clients" class="clients-section">
+            <div class="section-content">
+                <h2>CLIENTS <span class="highlight">WHO WE'VE</span> WORKED WITH</h2>
+                <div class="client-list">
+                    <div class="client-tag">CLIENT</div>
+                    <div class="client-tag">LIST</div>
+                    <div class="client-item">INTENTIONAL CO.</div>
+                    <div class="client-item">FREYJA</div>
+                    <div class="client-item">KINNEY</div>
+                    <div class="client-item">HALO</div>
+                    <div class="client-item">CONSIDERED</div>
+                    <div class="client-item">AUBURN</div>
+                </div>
+                <div class="client-showcase">
+                    <img src="images/client-showcase.jpg" alt="Client project showcase" class="showcase-image">
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="section-content">
+                <h2>NEXT</h2>
+                <div class="contact-container">
+                    <div class="contact-form">
+                        <h3>Chat Soon x</h3>
+                        <button class="contact-button">CONTACT</button>
+                    </div>
+                    <div class="contact-image">
+                        <img src="images/contact-image.jpg" alt="Contact us" class="contact-photo">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">
+                <h2>HAUS®</h2>
+            </div>
+            <div class="project-info">
+                <p>HAUS® is a collective of commercial photographers specializing in fashion, lifestyle, and event photography. We transform brands through compelling visual storytelling.</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+            </div>
+            <p>&copy; 2023 HAUS®. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/cursor-effects.js"></script>
+    <script src="js/scroll-effects.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 
